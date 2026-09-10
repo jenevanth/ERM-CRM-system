@@ -60,13 +60,13 @@ async def get_product_by_id(db: asyncpg.Connection, product_id: str) -> Optional
 async def create_product(db: asyncpg.Connection, data: dict, created_by: str) -> dict:
     row = await db.fetchrow(
         """
-        INSERT INTO products (name, sku, category, unit_price, current_stock, minimum_stock, warehouse, created_by)
-        VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
+        INSERT INTO products (name, sku, category, unit_price, current_stock, minimum_stock, warehouse)
+        VALUES ($1,$2,$3,$4,$5,$6,$7)
         RETURNING id, name, sku, category, unit_price, current_stock, minimum_stock, warehouse, created_at, updated_at
         """,
         data["name"], data["sku"], data["category"], data["unit_price"],
         data.get("current_stock", 0), data.get("minimum_stock", 0),
-        data.get("warehouse"), created_by,
+        data.get("warehouse", "North Hub Bay 3"),
     )
     return _row_to_product(dict(row))
 

@@ -207,6 +207,7 @@ export default function CreateChallanPage() {
         msg = detail.error || JSON.stringify(detail);
       }
       setErrorMsg(msg);
+      setShowConfirmModal(false);
     } finally {
       setSubmitting(false);
     }

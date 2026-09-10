@@ -28,6 +28,11 @@ class ForbiddenError(AppError):
         super().__init__(message, status_code=403)
 
 
+class BadRequestError(AppError):
+    def __init__(self, message: str, detail: Any = None):
+        super().__init__(message, status_code=400, detail=detail)
+
+
 class ValidationError(AppError):
     def __init__(self, message: str, detail: Any = None):
         super().__init__(message, status_code=400, detail=detail)

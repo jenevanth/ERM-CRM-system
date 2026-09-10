@@ -4,7 +4,7 @@ import asyncpg
 
 from app.database import get_db
 from app.middleware.auth import AuthUser, get_current_user, require_roles
-from app.exceptions import NotFoundError
+from app.exceptions import NotFoundError, BadRequestError
 from app.modules.products.schemas import (
     ProductCreate, ProductUpdate, ProductResponse, PaginatedProducts,
 )
@@ -48,7 +48,10 @@ async def create_product(
     current_user: AuthUser = Depends(require_roles("ADMIN", "WAREHOUSE")),
     db: asyncpg.Connection = Depends(get_db),
 ):
-    product = await repository.create_product(db, body.model_dump(), current_user.id)
+    try:
+        product = await repository.create_product(db, body.model_dump(), current_user.id)
+    except asyncpg.UniqueViolationError:
+        raise BadRequestError(f"A product with SKU '{body.sku}' already exists.")
     return ProductResponse(**product)
 
 
