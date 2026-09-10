@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import type { User } from '../types';
 
@@ -11,6 +11,7 @@ interface AuthCtx {
   user: User | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
+  signUp: (email: string, password: string, fullName: string, role: 'SALES' | 'WAREHOUSE' | 'ADMIN') => Promise<void>;
   signOut: () => Promise<void>;
 }
 
@@ -63,6 +64,40 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const signUp = async (
+    email: string,
+    password: string,
+    fullName: string,
+    role: 'SALES' | 'WAREHOUSE' | 'ADMIN'
+  ) => {
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { full_name: fullName, role },
+        },
+      });
+      if (error) throw error;
+
+      if (data.session) {
+        localStorage.setItem('access_token', data.session.access_token);
+        const { default: api } = await import('../lib/api');
+        const res = await api.post('/auth/profile', {
+          full_name: fullName,
+          email,
+          role,
+        });
+        const profile: User = res.data;
+        setUser(profile);
+        localStorage.setItem('user', JSON.stringify(profile));
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const signOut = async () => {
     await supabase.auth.signOut();
     setUser(null);
@@ -71,7 +106,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signUp, signOut }}>
       {children}
     </AuthContext.Provider>
   );

@@ -6,7 +6,7 @@ const navItems = [
   { path: '/customers', label: 'Customers', icon: 'groups' },
   { path: '/products', label: 'Products', icon: 'inventory_2' },
   { path: '/inventory', label: 'Inventory', icon: 'warehouse' },
-  { path: '/inventory/movements', label: 'Stock Movements', icon: 'swap_horiz' },
+  { path: '/inventory?tab=ledger', label: 'Stock Movements', icon: 'swap_horiz' },
   { path: '/challans', label: 'Sales Challans', icon: 'receipt_long' },
 ];
 
