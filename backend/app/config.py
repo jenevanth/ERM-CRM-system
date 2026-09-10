@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     supabase_jwt_secret: str
 
     class Config:
-        env_file = ".env"
+        env_file = (".env", "backend/.env", "../.env")
         env_file_encoding = "utf-8"
 
 
