@@ -18,12 +18,18 @@ from app.modules.dashboard.router import router as dashboard_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup: warm up the DB connection pool
-    await get_pool()
-    print("✅ Database connection pool ready")
+    try:
+        await get_pool()
+        print("✅ Database connection pool ready")
+    except Exception as e:
+        print(f"⚠️ Database connection pool startup warning: {e}")
     yield
     # Shutdown: close all connections
-    await close_pool()
-    print("🔌 Database connection pool closed")
+    try:
+        await close_pool()
+        print("🔌 Database connection pool closed")
+    except Exception as e:
+        print(f"⚠️ Database connection pool close warning: {e}")
 
 
 app = FastAPI(
