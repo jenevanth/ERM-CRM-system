@@ -58,8 +58,8 @@ export default function CreateChallanPage() {
           const defaultItems: ChallanLineDraft[] = prodList.slice(0, 2).map((p) => ({
             product_id: p.id,
             product: p,
-            quantity: Math.min(5, Math.max(1, Math.floor(p.current_stock / 2))),
-            unit_price: p.unit_price,
+            quantity: Math.min(5, Math.max(1, Math.floor((Number(p.current_stock) || 0) / 2))),
+            unit_price: Number(p.unit_price) || 0,
           }));
           setLines(defaultItems);
         }
@@ -80,12 +80,15 @@ export default function CreateChallanPage() {
   // Line calculations & inventory check
   const evaluatedLines = useMemo(() => {
     return lines.map((line) => {
-      const available = line.product.current_stock;
-      const deficit = line.quantity > available ? line.quantity - available : 0;
-      const balance = available - line.quantity;
-      const lineTotal = line.quantity * line.unit_price;
+      const available = Number(line.product?.current_stock ?? 0);
+      const quantity = Number(line.quantity) || 1;
+      const unitPrice = Number(line.unit_price || line.product?.unit_price || 0);
+      const deficit = quantity > available ? quantity - available : 0;
+      const balance = available - quantity;
+      const lineTotal = quantity * unitPrice;
       const isDeficit = deficit > 0;
-      const isLow = !isDeficit && balance <= (line.product.minimum_stock ?? line.product.min_stock_level ?? 0);
+      const minStock = Number(line.product?.minimum_stock ?? (line.product as any)?.min_stock_level ?? 0);
+      const isLow = !isDeficit && balance <= minStock;
 
       return {
         ...line,
@@ -95,6 +98,7 @@ export default function CreateChallanPage() {
         lineTotal,
         isDeficit,
         isLow,
+        unit_price: unitPrice,
       };
     });
   }, [lines]);
@@ -102,10 +106,10 @@ export default function CreateChallanPage() {
   const hasStockConflict = evaluatedLines.some((l) => l.isDeficit);
   const conflictCount = evaluatedLines.filter((l) => l.isDeficit).length;
 
-  const grossSubtotal = evaluatedLines.reduce((acc, l) => acc + l.lineTotal, 0);
+  const grossSubtotal = evaluatedLines.reduce((acc, l) => acc + (Number(l.lineTotal) || 0), 0);
   const gstAmount = grossSubtotal * 0.18;
   const totalValue = grossSubtotal + gstAmount;
-  const totalUnits = evaluatedLines.reduce((acc, l) => acc + l.quantity, 0);
+  const totalUnits = evaluatedLines.reduce((acc, l) => acc + (Number(l.quantity) || 0), 0);
 
   const handleAddLine = () => {
     if (!selectedProductToAdd) return;
@@ -124,7 +128,7 @@ export default function CreateChallanPage() {
           product_id: prod.id,
           product: prod,
           quantity: 1,
-          unit_price: prod.unit_price,
+          unit_price: Number(prod.unit_price) || 0,
         },
       ]);
     }
@@ -294,17 +298,20 @@ export default function CreateChallanPage() {
                   onChange={(e) => setSelectedCustomerId(e.target.value)}
                   className="font-label-md text-label-md text-on-surface font-semibold bg-transparent border-0 focus:outline-none w-full"
                 >
-                  {customers.map((c) => (
-                    <option key={c.id} value={c.id}>
-                      {c.company_name ? `${c.company_name} (${c.name})` : c.name}
-                    </option>
-                  ))}
+                  {customers.map((c) => {
+                    const bName = (c as any).business_name || c.company || c.name;
+                    return (
+                      <option key={c.id} value={c.id}>
+                        {bName !== c.name ? `${bName} (${c.name})` : c.name}
+                      </option>
+                    );
+                  })}
                 </select>
                 <div className="flex items-center justify-between text-outline text-[11px] font-data-mono mt-1">
                   <span className="text-[#059669] font-medium">
-                    ${selectedCustomer?.outstanding_balance?.toLocaleString() || '0.00'} Bal
+                    ₹{Number((selectedCustomer as any)?.outstanding_balance || 0).toFixed(2)} Bal
                   </span>
-                  <span>GST: {selectedCustomer?.gstin || '27AAACA1234A1Z5'}</span>
+                  <span>GST: {(selectedCustomer as any)?.gst_number || selectedCustomer?.gstin || 'Unregistered'}</span>
                 </div>
               </div>
             </div>
@@ -491,7 +498,7 @@ export default function CreateChallanPage() {
                         {row.available} <span className="text-outline font-normal text-[11px]">pcs</span>
                       </td>
                       <td className="py-3 px-3 text-right font-data-mono text-body-sm text-on-surface">
-                        ${row.unit_price.toFixed(2)}
+                        ₹{Number(row.unit_price || 0).toFixed(2)}
                       </td>
                       <td className="py-3 px-3 text-right">
                         <input
@@ -511,7 +518,7 @@ export default function CreateChallanPage() {
                           row.isDeficit ? 'text-error font-bold' : 'text-on-surface'
                         }`}
                       >
-                        ${row.lineTotal.toFixed(2)}
+                        ₹{Number(row.lineTotal || 0).toFixed(2)}
                       </td>
                       <td className="py-3 px-3">
                         {row.isDeficit ? (
@@ -631,7 +638,7 @@ export default function CreateChallanPage() {
             <div className="space-y-2 font-body-sm text-body-sm">
               <div className="flex items-center justify-between text-on-surface-variant">
                 <span>Gross Line Subtotal</span>
-                <span className="font-data-mono font-medium text-on-surface">${grossSubtotal.toFixed(2)}</span>
+                <span className="font-data-mono font-medium text-on-surface">₹{Number(grossSubtotal || 0).toFixed(2)}</span>
               </div>
               <div className="flex items-center justify-between text-on-surface-variant">
                 <span>Estimated Freight ({transporter})</span>
@@ -639,12 +646,12 @@ export default function CreateChallanPage() {
               </div>
               <div className="flex items-center justify-between text-on-surface-variant">
                 <span>Applicable GST (IGST 18.0%)</span>
-                <span className="font-data-mono text-on-surface font-medium">${gstAmount.toFixed(2)}</span>
+                <span className="font-data-mono text-on-surface font-medium">₹{Number(gstAmount || 0).toFixed(2)}</span>
               </div>
               <div className="pt-2 flex items-baseline justify-between border-t border-outline-variant/20">
                 <span className="font-headline-sm text-headline-sm text-on-surface font-bold">Challan Total Value</span>
                 <span className="font-display-sm text-display-sm font-data-mono font-bold text-on-surface">
-                  ${totalValue.toFixed(2)}
+                  ₹{Number(totalValue || 0).toFixed(2)}
                 </span>
               </div>
             </div>
@@ -726,7 +733,7 @@ export default function CreateChallanPage() {
               </div>
               <div className="flex justify-between">
                 <span>Hub Ref: NORTH-CENTRAL-01</span>
-                <span className="text-on-surface font-semibold">Net Total: ${totalValue.toFixed(2)}</span>
+                <span className="text-on-surface font-semibold">Net Total: ₹{Number(totalValue || 0).toFixed(2)}</span>
               </div>
             </div>
 

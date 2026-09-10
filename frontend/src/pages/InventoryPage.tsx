@@ -476,7 +476,7 @@ export default function InventoryPage() {
                             </span>
                           </td>
                           <td className="px-space-md py-2 text-right font-data-mono text-on-surface">
-                            ${product.unit_price.toFixed(2)}
+                            ₹{Number(product.unit_price || 0).toFixed(2)}
                           </td>
                           <td className="px-space-md py-2 text-right">
                             <span
