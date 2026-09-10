@@ -7,7 +7,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [showPw, setShowPw] = useState(false);
   const [error, setError] = useState('');
-  const { signIn, loading } = useAuth();
+  const { user, signIn, signOut, loading } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent) => {
@@ -15,7 +15,19 @@ export default function LoginPage() {
     setError('');
     try {
       await signIn(email, password);
-      navigate('/');
+      window.location.href = '/';
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Invalid credentials. Please try again.');
+    }
+  };
+
+  const handleQuickLogin = async (quickEmail: string, quickPass: string) => {
+    setEmail(quickEmail);
+    setPassword(quickPass);
+    setError('');
+    try {
+      await signIn(quickEmail, quickPass);
+      window.location.href = '/';
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Invalid credentials. Please try again.');
     }
@@ -60,7 +72,33 @@ export default function LoginPage() {
             </div>
 
             {/* Form */}
-            <form className="p-6 space-y-4" onSubmit={handleSubmit}>
+            <div className="p-6 space-y-4">
+              {user && (
+                <div className="p-3 rounded-lg bg-blue-50 border border-blue-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                  <div className="text-xs">
+                    <p className="font-semibold text-blue-950">Currently signed in as:</p>
+                    <p className="text-blue-800 font-mono text-[11px]">{user.full_name} ({user.role})</p>
+                  </div>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => navigate('/')}
+                      className="px-2.5 py-1 rounded bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 cursor-pointer"
+                    >
+                      Console
+                    </button>
+                    <button
+                      type="button"
+                      onClick={async () => { await signOut(); window.location.reload(); }}
+                      className="px-2.5 py-1 rounded bg-white text-red-600 border border-red-200 text-xs font-semibold hover:bg-red-50 cursor-pointer"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              <form className="space-y-4" onSubmit={handleSubmit}>
               {error && (
                 <div className="px-3 py-2 rounded text-xs"
                   style={{ background: 'var(--color-error-container)', color: 'var(--color-error)' }}>
@@ -140,7 +178,7 @@ export default function LoginPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded text-xs font-semibold tracking-wide transition-opacity"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded text-xs font-semibold tracking-wide transition-opacity cursor-pointer"
                   style={{
                     background: '#0f172a',
                     color: '#fff',
@@ -155,10 +193,68 @@ export default function LoginPage() {
                   )}
                 </button>
               </div>
+
+              {/* Quick Role Logins Section */}
+              <div className="pt-4 border-t border-slate-100">
+                <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider text-center mb-2.5">
+                  Fast Demo Logins (Click to Sign In)
+                </p>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    disabled={loading}
+                    onClick={() => handleQuickLogin('admin@apex.in', 'Admin@123')}
+                    className="flex items-center justify-center gap-1.5 py-1.5 px-2.5 rounded text-xs font-medium bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 transition-colors cursor-pointer"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-purple-600"></span>
+                    <span>Admin</span>
+                  </button>
+                  <button
+                    type="button"
+                    disabled={loading}
+                    onClick={() => handleQuickLogin('sales@apex.in', 'Sales@123')}
+                    className="flex items-center justify-center gap-1.5 py-1.5 px-2.5 rounded text-xs font-medium bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 transition-colors cursor-pointer"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-blue-600"></span>
+                    <span>Sales Lead</span>
+                  </button>
+                  <button
+                    type="button"
+                    disabled={loading}
+                    onClick={() => handleQuickLogin('warehouse@apex.in', 'Warehouse@123')}
+                    className="flex items-center justify-center gap-1.5 py-1.5 px-2.5 rounded text-xs font-medium bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 transition-colors cursor-pointer"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-amber-600"></span>
+                    <span>Warehouse</span>
+                  </button>
+                  <button
+                    type="button"
+                    disabled={loading}
+                    onClick={() => handleQuickLogin('accounts@apex.in', 'Accounts@123')}
+                    className="flex items-center justify-center gap-1.5 py-1.5 px-2.5 rounded text-xs font-medium bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 transition-colors cursor-pointer"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
+                    <span>Accounts</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Registration Link */}
+              <div className="pt-2 text-center text-xs text-slate-600">
+                Need a staff account?{' '}
+                <button
+                  type="button"
+                  onClick={() => navigate('/register')}
+                  className="font-semibold text-slate-900 hover:underline cursor-pointer"
+                >
+                  Register Staff Member
+                </button>
+              </div>
             </form>
           </div>
         </div>
-      </main>
+      </div>
+    </main>
 
       {/* Footer */}
       <footer className="w-full px-6 py-3 text-center text-xs"

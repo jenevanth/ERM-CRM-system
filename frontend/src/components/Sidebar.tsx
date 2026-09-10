@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const navItems = [
@@ -12,15 +12,27 @@ const navItems = [
 
 export default function Sidebar() {
   const { user, signOut } = useAuth();
-  const navigate = useNavigate();
+  const location = useLocation();
+
+  const isItemActive = (path: string) => {
+    if (path === '/') return location.pathname === '/' || location.pathname === '/dashboard';
+    if (path.includes('?tab=ledger')) return location.pathname === '/inventory' && location.search.includes('tab=ledger');
+    if (path === '/inventory') return location.pathname === '/inventory' && !location.search.includes('tab=ledger');
+    return location.pathname.startsWith(path);
+  };
 
   const initials = user?.full_name
     ? user.full_name.split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase()
     : 'U';
 
   const handleSignOut = async () => {
-    await signOut();
-    navigate('/login');
+    try {
+      await signOut();
+    } catch (err) {
+      console.warn('Sign out warning:', err);
+    } finally {
+      window.location.href = '/login';
+    }
   };
 
   return (
@@ -55,27 +67,24 @@ export default function Sidebar() {
 
         {/* Nav links */}
         <nav className="flex flex-col px-2 gap-0.5">
-          {navItems.map(({ path, label, icon }) => (
-            <NavLink
-              key={path}
-              to={path}
-              end={path === '/'}
-              className={({ isActive }) =>
-                `nav-item ${isActive ? 'active' : ''}`
-              }
-            >
-              <span className="material-symbols-outlined" style={{ fontSize: 18 }}>{icon}</span>
-              <span>{label}</span>
-            </NavLink>
-          ))}
+          {navItems.map(({ path, label, icon }) => {
+            const active = isItemActive(path);
+            return (
+              <NavLink
+                key={path}
+                to={path}
+                className={`nav-item ${active ? 'active' : ''}`}
+              >
+                <span className="material-symbols-outlined" style={{ fontSize: 18 }}>{icon}</span>
+                <span>{label}</span>
+              </NavLink>
+            );
+          })}
         </nav>
       </div>
 
       {/* User footer */}
-      <div className="p-3" style={{
-        borderTop: '1px solid rgba(198,198,205,0.3)',
-        background: 'var(--color-surface-bright)',
-      }}>
+      <div className="p-3 border-t border-slate-200 bg-white shrink-0">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 min-w-0">
             <div className="w-8 h-8 rounded flex items-center justify-center font-mono text-xs font-semibold shrink-0"
@@ -83,25 +92,22 @@ export default function Sidebar() {
               {initials}
             </div>
             <div className="flex flex-col min-w-0">
-              <span className="text-label-md truncate leading-tight"
-                style={{ color: 'var(--color-on-surface)' }}>
+              <span className="text-xs font-bold text-slate-900 truncate leading-tight">
                 {user?.full_name ?? 'Staff User'}
               </span>
-              <span className="inline-flex items-center px-1.5 py-0.5 rounded text-label-sm w-fit mt-0.5"
-                style={{ background: 'var(--color-surface-container)', color: 'var(--color-on-surface-variant)' }}>
+              <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono uppercase font-bold w-fit mt-0.5 bg-slate-100 text-slate-600">
                 {user?.role ?? '—'}
               </span>
             </div>
           </div>
           <button
+            type="button"
             onClick={handleSignOut}
-            className="p-1.5 rounded transition-colors"
-            title="Sign Out"
-            style={{ color: 'var(--color-on-surface-variant)' }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = 'var(--color-surface-container)'; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = 'transparent'; }}
+            className="p-2 rounded text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
+            title="Sign Out of Portal"
+            aria-label="Sign Out"
           >
-            <span className="material-symbols-outlined" style={{ fontSize: 18 }}>logout</span>
+            <span className="material-symbols-outlined" style={{ fontSize: 20 }}>logout</span>
           </button>
         </div>
       </div>

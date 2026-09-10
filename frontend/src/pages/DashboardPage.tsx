@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import api from '../lib/api';
 import type { DashboardStats } from '../types';
 import StatusBadge from '../components/StatusBadge';
+import { useAuth } from '../context/AuthContext';
 
 const StatCard = ({
   label,
@@ -47,6 +48,7 @@ export default function DashboardPage() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
     api.get<DashboardStats>('/dashboard').then((r) => {
@@ -82,9 +84,30 @@ export default function DashboardPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <button className="btn-secondary">
-            <span className="material-symbols-outlined" style={{ fontSize: 16 }}>file_download</span>
-            <span>Export Summary</span>
+          {user && (
+            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded bg-slate-100 border border-slate-200 text-xs">
+              <span className="font-semibold text-slate-800">{user.full_name}</span>
+              <span className="font-mono uppercase font-bold text-[10px] px-1.5 py-0.5 rounded bg-white text-slate-600 border border-slate-200">
+                {user.role}
+              </span>
+            </div>
+          )}
+          <button
+            type="button"
+            onClick={async () => {
+              try {
+                await signOut();
+              } catch (e) {
+                console.warn(e);
+              } finally {
+                window.location.href = '/login';
+              }
+            }}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 transition-colors cursor-pointer"
+            title="Sign Out of Portal"
+          >
+            <span className="material-symbols-outlined text-red-600" style={{ fontSize: 16 }}>logout</span>
+            <span>Sign Out</span>
           </button>
         </div>
       </div>

@@ -99,10 +99,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signOut = async () => {
-    await supabase.auth.signOut();
-    setUser(null);
+    // 1. Immediately wipe local state and token so the client is guaranteed logged out
     localStorage.removeItem('access_token');
     localStorage.removeItem('user');
+    sessionStorage.clear();
+    setUser(null);
+
+    // 2. Best-effort remote Supabase signout (max 1 second timeout)
+    try {
+      await Promise.race([
+        supabase.auth.signOut(),
+        new Promise((resolve) => setTimeout(resolve, 1000)),
+      ]);
+    } catch (err) {
+      console.warn('Supabase remote sign out completed with warning:', err);
+    }
   };
 
   return (
