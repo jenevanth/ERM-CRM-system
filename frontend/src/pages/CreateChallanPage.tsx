@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import api from '../lib/api';
 import type { Customer, Product, Paginated } from '../types';
 
@@ -12,6 +12,8 @@ interface ChallanLineDraft {
 
 export default function CreateChallanPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const paramCustomerId = searchParams.get('customer_id');
 
   // Master data
   const [customers, setCustomers] = useState<Customer[]>([]);
@@ -45,7 +47,8 @@ export default function CreateChallanPage() {
         const custList = custRes.data.data || custRes.data.items || [];
         setCustomers(custList);
         if (custList.length > 0) {
-          setSelectedCustomerId(custList[0].id);
+          const matched = paramCustomerId ? custList.find(c => c.id === paramCustomerId) : null;
+          setSelectedCustomerId(matched ? matched.id : custList[0].id);
         }
         const prodList = prodRes.data.data || prodRes.data.items || [];
         setAllProducts(prodList);
@@ -67,7 +70,7 @@ export default function CreateChallanPage() {
       }
     }
     loadData();
-  }, []);
+  }, [paramCustomerId]);
 
   const selectedCustomer = useMemo(
     () => customers.find((c) => c.id === selectedCustomerId),
@@ -190,7 +193,16 @@ export default function CreateChallanPage() {
       setShowConfirmModal(false);
       navigate(`/challans/${createdChallan.id}`);
     } catch (err: any) {
-      setErrorMsg(err?.response?.data?.detail || 'Failed to process challan. Please check stock balances.');
+      const detail = err?.response?.data?.detail;
+      let msg = 'Failed to process challan. Please check stock balances.';
+      if (typeof detail === 'string') {
+        msg = detail;
+      } else if (Array.isArray(detail)) {
+        msg = detail.map((d: any) => d.msg || `${d.loc?.join('.')}: invalid`).join(', ');
+      } else if (detail && typeof detail === 'object') {
+        msg = detail.error || JSON.stringify(detail);
+      }
+      setErrorMsg(msg);
     } finally {
       setSubmitting(false);
     }

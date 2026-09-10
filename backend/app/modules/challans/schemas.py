@@ -7,6 +7,7 @@ from decimal import Decimal
 class ChallanItemInput(BaseModel):
     product_id: str
     quantity: int
+    unit_price: Optional[Decimal] = None
 
     @field_validator("quantity")
     @classmethod
@@ -19,6 +20,7 @@ class ChallanItemInput(BaseModel):
 class ChallanCreate(BaseModel):
     customer_id: str
     items: list[ChallanItemInput]
+    notes: Optional[str] = None
 
     @field_validator("items")
     @classmethod
@@ -45,6 +47,7 @@ class ChallanResponse(BaseModel):
     customer_name: Optional[str]
     total_quantity: int
     status: str
+    notes: Optional[str] = None
     created_by: Optional[str]
     created_at: datetime
     items: list[ChallanItemResponse] = []
@@ -55,3 +58,4 @@ class PaginatedChallans(BaseModel):
     total: int
     page: int
     limit: int
+

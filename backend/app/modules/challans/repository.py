@@ -74,7 +74,7 @@ async def list_challans(
     rows = await db.fetch(
         f"""
         SELECT ch.id, ch.challan_number, ch.customer_id, c.name AS customer_name,
-               ch.total_quantity, ch.status, ch.created_by, ch.created_at
+               ch.total_quantity, ch.status, ch.notes, ch.created_by, ch.created_at
         FROM challans ch
         LEFT JOIN customers c ON ch.customer_id = c.id
         {where}
@@ -90,7 +90,7 @@ async def get_challan_by_id(db: asyncpg.Connection, challan_id: str) -> Optional
     row = await db.fetchrow(
         """
         SELECT ch.id, ch.challan_number, ch.customer_id, c.name AS customer_name,
-               ch.total_quantity, ch.status, ch.created_by, ch.created_at
+               ch.total_quantity, ch.status, ch.notes, ch.created_by, ch.created_at
         FROM challans ch
         LEFT JOIN customers c ON ch.customer_id = c.id
         WHERE ch.id = $1
@@ -108,6 +108,7 @@ async def create_draft_challan(
     customer_id: str,
     items_input: list[dict],
     created_by: str,
+    notes: Optional[str] = None,
 ) -> dict:
     """
     Creates a DRAFT challan with product snapshot data.
@@ -126,22 +127,23 @@ async def create_draft_challan(
             )
             if not product:
                 raise ValueError(f"Product '{item['product_id']}' not found")
+            unit_price = item.get("unit_price") if item.get("unit_price") is not None else product["unit_price"]
             enriched_items.append({
                 "product_id": item["product_id"],
                 "product_name_snapshot": product["name"],
                 "sku_snapshot": product["sku"],
-                "unit_price_snapshot": product["unit_price"],
+                "unit_price_snapshot": unit_price,
                 "quantity": item["quantity"],
             })
             total_quantity += item["quantity"]
 
         challan_row = await db.fetchrow(
             """
-            INSERT INTO challans (challan_number, customer_id, total_quantity, status, created_by)
-            VALUES ($1, $2, $3, 'DRAFT', $4)
-            RETURNING id, challan_number, customer_id, total_quantity, status, created_by, created_at
+            INSERT INTO challans (challan_number, customer_id, total_quantity, status, notes, created_by)
+            VALUES ($1, $2, $3, 'DRAFT', $4, $5)
+            RETURNING id, challan_number, customer_id, total_quantity, status, notes, created_by, created_at
             """,
-            challan_number, customer_id, total_quantity, created_by,
+            challan_number, customer_id, total_quantity, notes, created_by,
         )
         challan_id = challan_row["id"]
 

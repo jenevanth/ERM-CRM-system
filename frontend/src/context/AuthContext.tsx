@@ -11,7 +11,7 @@ interface AuthCtx {
   user: User | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
-  signUp: (email: string, password: string, fullName: string, role: 'SALES' | 'WAREHOUSE' | 'ADMIN') => Promise<void>;
+  signUp: (email: string, password: string, fullName: string, role: 'SALES' | 'WAREHOUSE' | 'ADMIN' | 'ACCOUNTS') => Promise<void>;
   signOut: () => Promise<void>;
 }
 
@@ -68,7 +68,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     email: string,
     password: string,
     fullName: string,
-    role: 'SALES' | 'WAREHOUSE' | 'ADMIN'
+    role: 'SALES' | 'WAREHOUSE' | 'ADMIN' | 'ACCOUNTS'
   ) => {
     setLoading(true);
     try {

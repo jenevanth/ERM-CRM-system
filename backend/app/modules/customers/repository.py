@@ -32,7 +32,7 @@ async def list_customers(
     params.extend([limit, offset])
     rows = await db.fetch(
         f"""
-        SELECT c.id, c.name, c.mobile, c.email, c.business_name, c.gst_number,
+        SELECT c.id, c.name, c.mobile, c.email, c.business_name, c.company, c.gst_number, c.gstin,
                c.customer_type, c.address, c.status, c.follow_up_date, c.notes,
                c.created_at, c.updated_at
         FROM customers c
@@ -48,7 +48,7 @@ async def list_customers(
 async def get_customer_by_id(db: asyncpg.Connection, customer_id: str) -> Optional[dict]:
     row = await db.fetchrow(
         """
-        SELECT id, name, mobile, email, business_name, gst_number,
+        SELECT id, name, mobile, email, business_name, company, gst_number, gstin,
                customer_type, address, status, follow_up_date, notes,
                created_at, updated_at
         FROM customers WHERE id = $1
@@ -59,17 +59,20 @@ async def get_customer_by_id(db: asyncpg.Connection, customer_id: str) -> Option
 
 
 async def create_customer(db: asyncpg.Connection, data: dict, created_by: str) -> dict:
+    biz_name = data.get("business_name") or data.get("company")
+    gst_val = data.get("gst_number") or data.get("gstin")
+    cust_type = data.get("customer_type") or "WHOLESALE"
     row = await db.fetchrow(
         """
-        INSERT INTO customers (name, mobile, email, business_name, gst_number,
+        INSERT INTO customers (name, mobile, email, business_name, company, gst_number, gstin,
             customer_type, address, status, follow_up_date, notes, created_by)
-        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
-        RETURNING id, name, mobile, email, business_name, gst_number,
+        VALUES ($1,$2,$3,$4,$4,$5,$5,$6,$7,$8,$9,$10,$11)
+        RETURNING id, name, mobile, email, business_name, company, gst_number, gstin,
                   customer_type, address, status, follow_up_date, notes, created_at, updated_at
         """,
         data.get("name"), data.get("mobile"), data.get("email"),
-        data.get("business_name"), data.get("gst_number"), data.get("customer_type"),
-        data.get("address"), data.get("status"), data.get("follow_up_date"),
+        biz_name, gst_val, cust_type,
+        data.get("address"), data.get("status") or "LEAD", data.get("follow_up_date"),
         data.get("notes"), created_by,
     )
     return dict(row)

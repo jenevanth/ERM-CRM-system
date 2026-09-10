@@ -60,6 +60,7 @@ async def create_challan(
             customer_id=body.customer_id,
             items_input=[item.model_dump() for item in body.items],
             created_by=current_user.id,
+            notes=body.notes,
         )
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -84,7 +85,10 @@ async def confirm_challan(
     try:
         confirmed = await repository.confirm_challan(db, challan_id)
     except InsufficientStockError as e:
-        raise HTTPException(status_code=400, detail={"error": e.message, **e.detail})
+        raise HTTPException(
+            status_code=400,
+            detail=f"{e.message}. Available: {e.detail.get('available')}, Requested: {e.detail.get('requested')}",
+        )
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 

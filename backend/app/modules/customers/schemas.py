@@ -11,8 +11,10 @@ class CustomerCreate(BaseModel):
     mobile: str
     email: Optional[EmailStr] = None
     business_name: Optional[str] = None
+    company: Optional[str] = None
     gst_number: Optional[str] = None
-    customer_type: CustomerType
+    gstin: Optional[str] = None
+    customer_type: CustomerType = "WHOLESALE"
     address: Optional[str] = None
     status: CustomerStatus = "LEAD"
     follow_up_date: Optional[Union[datetime, date]] = None
@@ -24,7 +26,9 @@ class CustomerUpdate(BaseModel):
     mobile: Optional[str] = None
     email: Optional[EmailStr] = None
     business_name: Optional[str] = None
+    company: Optional[str] = None
     gst_number: Optional[str] = None
+    gstin: Optional[str] = None
     customer_type: Optional[CustomerType] = None
     address: Optional[str] = None
     status: Optional[CustomerStatus] = None
@@ -36,14 +40,16 @@ class CustomerResponse(BaseModel):
     id: str
     name: str
     mobile: str
-    email: Optional[str]
-    business_name: Optional[str]
-    gst_number: Optional[str]
-    customer_type: str
-    address: Optional[str]
+    email: Optional[str] = None
+    business_name: Optional[str] = None
+    company: Optional[str] = None
+    gst_number: Optional[str] = None
+    gstin: Optional[str] = None
+    customer_type: str = "WHOLESALE"
+    address: Optional[str] = None
     status: str
-    follow_up_date: Optional[Union[datetime, date]]
-    notes: Optional[str]
+    follow_up_date: Optional[Union[datetime, date]] = None
+    notes: Optional[str] = None
     created_at: datetime
     updated_at: datetime
 
