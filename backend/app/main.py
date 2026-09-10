@@ -34,14 +34,35 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS — allow the React frontend to call this API
+# CORS — allow React frontend (local and Vercel production) to call this API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],  # Add prod URL later
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:3000",
+        "https://erm-crm-system.vercel.app",
+    ],
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.get("/", tags=["Root"])
+async def root():
+    """Root endpoint with API service directory and documentation links."""
+    return {
+        "service": "Apex Wholesale Operations Portal API",
+        "version": "1.0.0",
+        "status": "operational",
+        "documentation": "/docs",
+        "alternative_docs": "/redoc",
+        "health_check": "/health",
+        "api_base": "/api",
+    }
 
 # Global error handlers
 app.add_exception_handler(AppError, app_error_handler)
