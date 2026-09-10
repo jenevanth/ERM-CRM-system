@@ -67,7 +67,7 @@ Below is the exhaustive catalog of every single UI element across all 9 pages of
 
 ---
 
-### Navigation Shell: Global Layout (`Layout.tsx`)
+### Navigation Shell: Global Layout (`Layout.tsx`, `Topbar.tsx`, `Sidebar.tsx`)
 | # | UI Element | Element Type | Functionality & Validation | ADMIN | SALES | WAREHOUSE | ACCOUNTS | Status |
 |---|---|---|---|---|---|---|---|---|
 | 19 | Enterprise Logo | Brand Header | Direct link to `/dashboard` | Clickable | Clickable | Clickable | Clickable | ✅ Verified |
@@ -76,12 +76,15 @@ Below is the exhaustive catalog of every single UI element across all 9 pages of
 | 22 | Nav Item: Customers | Sidebar Link | Route `/customers` | Full | Full | Read-only | Full | ✅ Verified |
 | 23 | Nav Item: Products | Sidebar Link | Route `/products` | Full | View | Full | Read-only | ✅ Verified |
 | 24 | Nav Item: Inventory | Sidebar Link | Route `/inventory` | Full | View | Full | Read-only | ✅ Verified |
-| 25 | Nav Item: Stock Movements | Sidebar Link | Route `/inventory` (Movements tab) | Full | View | Full | Read-only | ✅ Verified |
+| 25 | Nav Item: Stock Movements | Sidebar Link | Route `/inventory?tab=ledger` (Movements tab) | Full | View | Full | Read-only | ✅ Verified |
 | 26 | Nav Item: Sales Challans | Sidebar Link | Route `/challans` | Full | Full | View | Full | ✅ Verified |
 | 27 | Topbar "New Challan" CTA | Button | Fast shortcut to `/challans/new` | Visible | Visible | Hidden | Hidden | ✅ Verified |
 | 28 | Realtime Sync Indicator | Status Pill | "SYNC: REALTIME" active database socket | Active | Active | Active | Active | ✅ Verified |
-| 29 | Current User Card | Footer Widget | Displays full name and assigned role badge | Rendered | Rendered | Rendered | Rendered | ✅ Verified |
-| 30 | Logout Button | Icon Button | Clears JWT session, redirects to `/login` | Functional | Functional | Functional | Functional | ✅ Verified |
+| 29 | Topbar User Profile Menu | Dropdown Toggle | Displays user initials, name, and role dropdown | Rendered | Rendered | Rendered | Rendered | ✅ Verified |
+| 30a | Topbar User Dropdown Sign Out | Dropdown Action | Wipes token and local state, redirects to `/login` | Functional | Functional | Functional | Functional | ✅ Verified |
+| 30b | Topbar Quick Logout Button | Topbar Header Button | Red "Logout" button next to avatar | Functional | Functional | Functional | Functional | ✅ Verified |
+| 30c | Sidebar Footer Logout Button | Sidebar Button | Hoverable logout icon in bottom left | Functional | Functional | Functional | Functional | ✅ Verified |
+| 30d | Dashboard Header Sign Out | Header Action Button | Red "Sign Out" button directly in dashboard | Functional | Functional | Functional | Functional | ✅ Verified |
 
 ---
 
