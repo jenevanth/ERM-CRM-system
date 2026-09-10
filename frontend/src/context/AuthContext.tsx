@@ -2,10 +2,11 @@ import { createContext, useContext, useState, useEffect, type ReactNode } from '
 import { createClient } from '@supabase/supabase-js';
 import type { User } from '../types';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
+const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || 'https://qkgskoboqikbrsvuidsy.supabase.co';
+const supabaseAnonKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFrZ3Nrb2JvcWlrYnJzdnVpZHN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkwNTAxMjAsImV4cCI6MjEwNDYyNjEyMH0.eCHEEwr0h8v3_pBqSxDq-SYbIbCLV9WxLv2dteY3K-4';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
 
 interface AuthCtx {
   user: User | null;
