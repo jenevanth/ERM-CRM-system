@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-container": "#0d1c2e", "surface-container-high": "#dce9ff", "surface-bright": "#f8f9ff", "secondary": "#4059aa", "on-primary-fixed-variant": "#3f465c", "inverse-primary": "#bec6e0", "on-surface": "#0b1c30", "on-secondary-container": "#1d3989", "outline-variant": "#c6c6cd", "background": "#f8f9ff", "on-tertiary-container": "#77859a", "primary-container": "#131b2e", "on-tertiary": "#ffffff", "on-secondary": "#ffffff", "on-primary-fixed": "#131b2e", "secondary-container": "#8fa7fe", "error": "#ba1a1a", "on-primary-container": "#7c839b", "primary": "#000000", "tertiary-fixed": "#d5e3fc", "primary-fixed-dim": "#bec6e0", "surface-container": "#e5eeff", "surface": "#f8f9ff", "on-secondary-fixed": "#00164e", "secondary-fixed": "#dce1ff", "surface-container-low": "#eff4ff", "surface-tint": "#565e74", "outline": "#76777d", "surface-variant": "#d3e4fe", "on-surface-variant": "#45464d", "on-tertiary-fixed": "#0d1c2e", "inverse-on-surface": "#eaf1ff", "on-tertiary-fixed-variant": "#3a485b", "secondary-fixed-dim": "#b6c4ff", "on-background": "#0b1c30", "surface-dim": "#cbdbf5", "tertiary-fixed-dim": "#b9c7df", "on-error": "#ffffff", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "on-secondary-fixed-variant": "#264191", "on-primary": "#ffffff", "tertiary": "#000000", "primary-fixed": "#dae2fd", "surface-container-highest": "#d3e4fe", "inverse-surface": "#213145", "error-container": "#ffdad6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-md": "0.75rem", "space-lg": "1rem", "space-xs": "0.25rem", "space-xl": "1.5rem", "margin-mobile": "0.75rem", "gutter-mobile": "0.5rem", "space-sm": "0.375rem", "margin": "1.25rem", "gutter": "0.75rem" }, "fontFamily": { "headline-lg": ["Inter"], "label-sm": ["Inter"], "body-md": ["Inter"], "label-md": ["Inter"], "display-sm": ["Inter"], "body-sm": ["Inter"], "body-lg": ["Inter"], "label-lg": ["Inter"], "data-mono": ["JetBrains Mono"], "headline-sm": ["Inter"], "headline-md": ["Inter"] }, "fontSize": { "headline-lg": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "600" }], "body-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "display-sm": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.005em", "fontWeight": "400" }], "body-lg": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-lg": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }], "data-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "-0.02em", "fontWeight": "400" }], "headline-sm": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "headline-md": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-surface-variant selection:text-on-surface"><aside class="fixed left-0 top-0 h-full w-60 bg-surface-container-lowest border-r border-outline-variant/30 z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-14 px-space-lg border-b border-outline-variant/30 flex items-center gap-space-sm"><img alt="Apex Wholesale ERP Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W3ofveVtKUEHLcsdXO1Gqdaal54tyogVKcQXuP9JKVcnWe9uq_olMelWKBF69F7I4YgJAjgMwWoFG5MwpO_MWy8PPj5aZhoz__gK5kebmV5Nuabsa6q4tprQFRkQyRg-UsQ_mxozwSsJzGiCRjybhPmVqjq3QpvUVdXmu5CgTydPf81kyjUkKmacwWe-nBhBFK2uw-CS8Sa-OjpdfrbQtrr8EqIHCgiYvwKeAXC8NxGGNlbdC69XdJDw"/><div class="flex flex-col min-w-0 leading-none"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate">Apex Wholesale</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-0.5">ERP / CRM Core</span></div></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Operational Domains</div></div><nav class="flex flex-col px-space-sm gap-0.5" data-active-classes="bg-surface-container text-on-surface font-semibold border-l-2 border-primary"><a class="flex items-center gap-space-md px-space-md py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[18px]">dashboard</span><span>Dashboard</span></a><a aria-current="page" class="flex items-center gap-space-md px-space-md py-2 rounded transition-colors bg-surface-container text-on-surface font-semibold border-l-2 border-primary" data-path="customers" href="#"><span class="material-symbols-outlined text-[18px]">groups</span><span>Customers</span></a><a class="flex items-center gap-space-md px-space-md py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="products" href="#"><span class="material-symbols-outlined text-[18px]">inventory_2</span><span>Products</span></a><a class="flex items-center gap-space-md px-space-md py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="inventory" href="#"><span class="material-symbols-outlined text-[18px]">warehouse</span><span>Inventory</span></a><a class="flex items-center gap-space-md px-space-md py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="stock-movements" href="#"><span class="material-symbols-outlined text-[18px]">swap_horiz</span><span>Stock Movements</span></a><a class="flex items-center gap-space-md px-space-md py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="challans" href="#"><span class="material-symbols-outlined text-[18px]">receipt_long</span><span>Sales Challans</span></a></nav></div><div class="p-space-md border-t border-outline-variant/30 bg-surface-bright"><div class="flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><div class="w-8 h-8 rounded bg-primary text-on-primary flex items-center justify-center font-data-mono text-data-mono font-semibold shrink-0">RK</div><div class="flex flex-col min-w-0"><span class="font-label-md text-label-md text-on-surface truncate leading-tight">Rajesh Kumar</span><span class="inline-flex items-center px-1.5 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface-variant w-fit mt-0.5">Admin / Hub</span></div></div><button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" title="Sign Out" type="button"><span class="material-symbols-outlined text-[18px]">logout</span></button></div></div></aside><div class="pl-60 min-h-screen flex flex-col"><header class="fixed top-0 left-60 right-0 h-14 bg-surface-container-lowest border-b border-outline-variant/30 z-40 px-6 flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">domain</span><span>Apex Operations</span><span class="text-outline-variant">/</span><span class="text-on-surface font-semibold">Console</span></div><span class="inline-flex items-center px-2 py-0.5 rounded font-data-mono text-[10px] uppercase font-semibold bg-surface-container-low text-secondary border border-outline-variant/30 tracking-wider">PROD-NORTH HUB</span></div><div class="flex-1 max-w-md mx-space-xl hidden lg:block"><div class="relative w-full flex items-center"><span class="material-symbols-outlined absolute left-2.5 text-[16px] text-outline pointer-events-none">search</span><input class="w-full h-8 pl-8 pr-12 rounded bg-surface-container-low border border-outline-variant/40 font-body-sm text-body-sm text-on-surface placeholder:text-outline cursor-pointer focus:outline-none" placeholder="Press / or Ctrl+K to search SKU, Customer, Challan..." readonly="" type="text"/><kbd class="absolute right-2 px-1.5 py-0.5 rounded bg-surface-container-lowest border border-outline-variant/50 font-data-mono text-[10px] text-outline">⌘K</kbd></div></div><div class="flex items-center gap-space-md shrink-0"><div class="hidden sm:flex items-center gap-1.5 px-2 py-1 rounded bg-surface-container-low border border-outline-variant/30"><span class="w-2 h-2 rounded-full bg-[#10b981]"></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Sync: Realtime</span></div><a class="hidden md:inline-flex items-center gap-1 h-8 px-space-md rounded border border-outline-variant bg-surface-container-lowest text-on-surface hover:bg-surface-container-low font-label-md text-label-md tracking-tight transition-colors" data-path="challans" href="#"><span class="material-symbols-outlined text-[16px]">add</span><span>New Challan</span></a><div class="relative flex items-center"><button class="p-1.5 rounded hover:bg-surface-container-low text-on-surface-variant hover:text-on-surface relative transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-4 h-4 rounded-full bg-error text-on-error font-data-mono text-[9px] flex items-center justify-center font-bold">2</span></button></div><div class="h-4 w-px bg-outline-variant/40"></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="relative pt-14 flex-1 bg-surface w-full px-space-xl py-space-lg"><div class="flex flex-col w-full">
+<!-- Top Context Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Customers</h1>
+<span class="bg-surface-container-high text-secondary font-data-mono text-label-sm px-2 py-0.5 rounded uppercase font-semibold">1,248 Verified</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+        Manage wholesale buyer accounts, credit terms, GST profiles, and sales follow-up schedules.
+      </p>
+</div>
+<!-- Global Operations Bar -->
+<div class="flex items-center gap-space-sm self-start md:self-auto shrink-0">
+<button class="inline-flex items-center gap-1.5 h-8 px-space-md rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container-low shadow-sm font-label-md text-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">download</span>
+<span>Export CSV</span>
+</button>
+<button class="inline-flex items-center gap-1.5 h-8 px-space-md rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container-low shadow-sm font-label-md text-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">assignment_ind</span>
+<span>Bulk Assign Rep</span>
+</button>
+<button class="inline-flex items-center gap-1.5 h-8 px-space-md rounded bg-primary text-on-primary hover:bg-on-surface-variant shadow-sm font-label-md text-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>Add Customer</span>
+</button>
+</div>
+</div>
+<!-- Operational Metrics Strip (Bento Utility) -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-md mb-space-lg">
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Active Accounts</span>
+<span class="font-data-mono text-headline-md text-on-surface font-semibold mt-0.5">1,084</span>
+</div>
+<div class="w-8 h-8 rounded bg-surface-container-low text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Follow-ups Today</span>
+<span class="font-data-mono text-headline-md text-on-surface font-semibold mt-0.5">24</span>
+</div>
+<div class="w-8 h-8 rounded bg-surface-container text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">event_upcoming</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Overdue Engagements</span>
+<span class="font-data-mono text-headline-md text-error font-semibold mt-0.5">7</span>
+</div>
+<div class="w-8 h-8 rounded bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">alarm_off</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Open Credit Exposure</span>
+<span class="font-data-mono text-headline-md text-on-surface font-semibold mt-0.5">₹ 4.12 Cr</span>
+</div>
+<div class="w-8 h-8 rounded bg-surface-container-high text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">account_balance</span>
+</div>
+</div>
+</div>
+<!-- Filter & Command Bar -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm mb-space-md flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row gap-space-sm items-stretch lg:items-center">
+<!-- Search Input -->
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[16px] text-outline pointer-events-none">search</span>
+<input class="w-full h-8 pl-8 pr-8 rounded bg-surface-container-low text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest" placeholder="Search by customer name, company, GSTIN, phone, or account ID..." type="text"/>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-[16px] text-outline cursor-pointer hover:text-on-surface">filter_alt</span>
+</div>
+<!-- Filters Array -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<div class="relative">
+<select class="h-8 pl-2 pr-7 rounded bg-surface-container-low text-on-surface font-label-md text-label-md appearance-none focus:outline-none cursor-pointer">
+<option>Type: All Accounts</option>
+<option>Wholesale Tier-1</option>
+<option>Wholesale Tier-2</option>
+<option>Retail Chain</option>
+<option>Institutional</option>
+</select>
+<span class="material-symbols-outlined absolute right-1.5 top-1/2 -translate-y-1/2 text-[14px] text-outline pointer-events-none">expand_more</span>
+</div>
+<div class="relative">
+<select class="h-8 pl-2 pr-7 rounded bg-surface-container-low text-on-surface font-label-md text-label-md appearance-none focus:outline-none cursor-pointer">
+<option>Status: All</option>
+<option>Active</option>
+<option>Lead</option>
+<option>Inactive</option>
+</select>
+<span class="material-symbols-outlined absolute right-1.5 top-1/2 -translate-y-1/2 text-[14px] text-outline pointer-events-none">expand_more</span>
+</div>
+<div class="relative">
+<select class="h-8 pl-2 pr-7 rounded bg-surface-container-low text-on-surface font-label-md text-label-md appearance-none focus:outline-none cursor-pointer">
+<option>Follow-up: All Schedules</option>
+<option>Overdue</option>
+<option>Today</option>
+<option>This Week</option>
+</select>
+<span class="material-symbols-outlined absolute right-1.5 top-1/2 -translate-y-1/2 text-[14px] text-outline pointer-events-none">expand_more</span>
+</div>
+<div class="relative">
+<select class="h-8 pl-2 pr-7 rounded bg-surface-container-low text-on-surface font-label-md text-label-md appearance-none focus:outline-none cursor-pointer">
+<option>Rep: All Sales Reps</option>
+<option>Rohan Mehra (North)</option>
+<option>Pooja Chawla (East)</option>
+<option>Sanjay Verma (West)</option>
+<option>Deepak Sethi (Central)</option>
+</select>
+<span class="material-symbols-outlined absolute right-1.5 top-1/2 -translate-y-1/2 text-[14px] text-outline pointer-events-none">expand_more</span>
+</div>
+<button class="h-8 px-2.5 rounded bg-surface-container text-on-surface hover:bg-surface-variant font-label-md text-label-md transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[15px]">refresh</span>
+<span>Reset</span>
+</button>
+</div>
+</div>
+<!-- Active Filter Badges & Count -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline mr-1">Active Filters:</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface">
+          Region: North Hub
+          <span class="material-symbols-outlined text-[12px] cursor-pointer hover:text-error">close</span>
+</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface">
+          GST Status: Active/Verified
+          <span class="material-symbols-outlined text-[12px] cursor-pointer hover:text-error">close</span>
+</span>
+<button class="font-label-sm text-label-sm text-secondary hover:underline ml-1">Clear all filters</button>
+</div>
+<div class="font-data-mono text-body-sm text-on-surface-variant">
+        Showing <span class="font-semibold text-on-surface">1–8</span> of <span class="font-semibold text-on-surface">1,248</span> accounts
+      </div>
+</div>
+</div>
+<!-- High-Density CRM Data Grid -->
+<div class="bg-surface-container-lowest rounded-lg shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[1080px]">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-md text-label-md uppercase tracking-wider h-9 select-none">
+<th class="w-10 px-3 text-center">
+<input class="rounded bg-surface-container-lowest cursor-pointer accent-primary" type="checkbox"/>
+</th>
+<th class="px-space-md">Customer &amp; Contact</th>
+<th class="px-space-md">Enterprise Account</th>
+<th class="px-space-md">Type</th>
+<th class="px-space-md">GSTIN / Tax ID</th>
+<th class="px-space-md">Next Follow-Up</th>
+<th class="px-space-md">Ledger / Credit</th>
+<th class="px-space-md">Status</th>
+<th class="px-space-md text-right pr-4">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-on-surface font-body-md text-body-md">
+<!-- Row 1 -->
+<tr class="h-11 hover:bg-surface-container-low transition-colors group">
+<td class="px-3 text-center">
+<input class="rounded bg-surface-container-lowest cursor-pointer accent-primary" type="checkbox"/>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-6 h-6 rounded bg-surface-container text-on-surface font-data-mono text-[10px] font-semibold flex items-center justify-center shrink-0">
+                  RS
+                </div>
+<div class="flex flex-col min-w-0">
+<a class="font-label-lg text-label-lg font-semibold text-on-surface hover:text-secondary truncate" href="#">Rajesh Sharma</a>
+<span class="font-data-mono text-[11px] text-outline truncate">+91 98201 44521 · rajesh@apexhardware.in</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Apex Hardware &amp; Tools Ltd</span>
+<span class="font-data-mono text-[10px] text-outline">ACC-98210 / Pune Metro</span>
+</div>
+</td>
+<td class="px-space-md">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-surface-container-high text-secondary font-label-sm text-label-sm uppercase font-semibold">
+                Wholesale T-1
+              </span>
+</td>
+<td class="px-space-md">
+<span class="font-data-mono text-data-mono text-on-surface">27AAACA1234A1Z5</span>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Oct 26, 2024</span>
+<span class="font-data-mono text-[10px] text-on-surface-variant">In 2 days · Quote Review</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-data-mono text-data-mono text-on-surface font-medium">₹ 14,82,500</span>
+<span class="font-data-mono text-[10px] text-outline">Net 30 · Limit: ₹25L</span>
+</div>
+</td>
+<td class="px-space-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface font-semibold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                Active
+              </span>
+</td>
+<td class="px-space-md text-right pr-4">
+<div class="flex items-center justify-end gap-1 opacity-90 group-hover:opacity-100">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Quick Note">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="New Sales Challan">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Profile Inspector">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="h-11 bg-surface-container-low/40 hover:bg-surface-container-low transition-colors group">
+<td class="px-3 text-center">
+<input class="rounded bg-surface-container-lowest cursor-pointer accent-primary" type="checkbox"/>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-6 h-6 rounded bg-surface-container text-on-surface font-data-mono text-[10px] font-semibold flex items-center justify-center shrink-0">
+                  VM
+                </div>
+<div class="flex flex-col min-w-0">
+<a class="font-label-lg text-label-lg font-semibold text-on-surface hover:text-secondary truncate" href="#">Vikram Malhotra</a>
+<span class="font-data-mono text-[11px] text-outline truncate">+91 94150 99812 · v.malhotra@metrosupplies.com</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Metro Industrial Supplies</span>
+<span class="font-data-mono text-[10px] text-outline">ACC-44102 / Delhi Central</span>
+</div>
+</td>
+<td class="px-space-md">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm uppercase font-semibold">
+                Institutional
+              </span>
+</td>
+<td class="px-space-md">
+<span class="font-data-mono text-data-mono text-on-surface">07BBBCB5678B2Z1</span>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface"></span>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Today</span>
+<span class="font-data-mono text-[10px] text-on-surface-variant">16:30 Pending · Bulk Order</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-data-mono text-data-mono text-on-surface font-medium">₹ 28,40,110</span>
+<span class="font-data-mono text-[10px] text-outline">Net 45 · Limit: ₹50L</span>
+</div>
+</td>
+<td class="px-space-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface font-semibold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                Active
+              </span>
+</td>
+<td class="px-space-md text-right pr-4">
+<div class="flex items-center justify-end gap-1 opacity-90 group-hover:opacity-100">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Quick Note">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="New Sales Challan">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Profile Inspector">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="h-11 hover:bg-surface-container-low transition-colors group">
+<td class="px-3 text-center">
+<input class="rounded bg-surface-container-lowest cursor-pointer accent-primary" type="checkbox"/>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-6 h-6 rounded bg-surface-container text-on-surface font-data-mono text-[10px] font-semibold flex items-center justify-center shrink-0">
+                  SA
+                </div>
+<div class="flex flex-col min-w-0">
+<a class="font-label-lg text-label-lg font-semibold text-on-surface hover:text-secondary truncate" href="#">Sunita Agarwal</a>
+<span class="font-data-mono text-[11px] text-outline truncate">+91 98111 23456 · accounts@starmart.org</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Star Mega Mart</span>
+<span class="font-data-mono text-[10px] text-outline">ACC-11093 / Kolkata East</span>
+</div>
+</td>
+<td class="px-space-md">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-surface-container-low text-on-surface font-label-sm text-label-sm uppercase font-semibold">
+                Retail Chain
+              </span>
+</td>
+<td class="px-space-md">
+<span class="font-data-mono text-data-mono text-on-surface">19CCCC7890C3Z9</span>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-semibold text-error">Overdue (Oct 21)</span>
+<span class="font-data-mono text-[10px] text-error font-medium">Payment Follow-up</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-data-mono text-data-mono text-error font-semibold">₹ 6,12,000</span>
+<span class="font-data-mono text-[10px] text-error">Exceeded Limit (+₹1.1L)</span>
+</div>
+</td>
+<td class="px-space-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high text-secondary font-label-sm text-label-sm font-semibold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                Lead
+              </span>
+</td>
+<td class="px-space-md text-right pr-4">
+<div class="flex items-center justify-end gap-1 opacity-90 group-hover:opacity-100">
+<button class="p-1 rounded hover:bg-surface-container text-error" title="Urgent Follow-up">
+<span class="material-symbols-outlined text-[16px]">priority_high</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Quick Note">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Profile Inspector">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="h-11 bg-surface-container-low/40 hover:bg-surface-container-low transition-colors group">
+<td class="px-3 text-center">
+<input class="rounded bg-surface-container-lowest cursor-pointer accent-primary" type="checkbox"/>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-6 h-6 rounded bg-surface-container text-on-surface font-data-mono text-[10px] font-semibold flex items-center justify-center shrink-0">
+                  AD
+                </div>
+<div class="flex flex-col min-w-0">
+<a class="font-label-lg text-label-lg font-semibold text-on-surface hover:text-secondary truncate" href="#">Anil Deshmukh</a>
+<span class="font-data-mono text-[11px] text-outline truncate">+91 97654 32109 · anil@decorabuild.co</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Decora Builder Store</span>
+<span class="font-data-mono text-[10px] text-outline">ACC-33291 / Nagpur Hub</span>
+</div>
+</td>
+<td class="px-space-md">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-surface-container-low text-on-surface font-label-sm text-label-sm uppercase font-semibold">
+                Wholesale T-2
+              </span>
+</td>
+<td class="px-space-md">
+<span class="font-data-mono text-data-mono text-on-surface">27DDDD1234D4Z0</span>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface-variant">Nov 02, 2024</span>
+<span class="font-data-mono text-[10px] text-outline">Quarterly Check</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-data-mono text-data-mono text-on-surface font-medium">₹ 0.00</span>
+<span class="font-data-mono text-[10px] text-outline">Settled · Limit: ₹10L</span>
+</div>
+</td>
+<td class="px-space-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm font-semibold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                Inactive
+              </span>
+</td>
+<td class="px-space-md text-right pr-4">
+<div class="flex items-center justify-end gap-1 opacity-90 group-hover:opacity-100">
+<button class="h-6 px-2 rounded bg-surface-container text-on-surface hover:bg-surface-variant font-label-sm text-label-sm" title="Reactivate Account">
+                  Reactivate
+                </button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Profile Inspector">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="h-11 hover:bg-surface-container-low transition-colors group">
+<td class="px-3 text-center">
+<input class="rounded bg-surface-container-lowest cursor-pointer accent-primary" type="checkbox"/>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-6 h-6 rounded bg-surface-container text-on-surface font-data-mono text-[10px] font-semibold flex items-center justify-center shrink-0">
+                  KP
+                </div>
+<div class="flex flex-col min-w-0">
+<a class="font-label-lg text-label-lg font-semibold text-on-surface hover:text-secondary truncate" href="#">Karan Patel</a>
+<span class="font-data-mono text-[11px] text-outline truncate">+91 99044 11223 · karan@gujaratsteel.net</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Gujarat Fasteners &amp; Wire</span>
+<span class="font-data-mono text-[10px] text-outline">ACC-88741 / Ahmedabad Yard</span>
+</div>
+</td>
+<td class="px-space-md">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-surface-container-high text-secondary font-label-sm text-label-sm uppercase font-semibold">
+                Wholesale T-1
+              </span>
+</td>
+<td class="px-space-md">
+<span class="font-data-mono text-data-mono text-on-surface">24EEEE5678E5Z2</span>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Oct 28, 2024</span>
+<span class="font-data-mono text-[10px] text-on-surface-variant">Consignment Dispatch</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-data-mono text-data-mono text-on-surface font-medium">₹ 19,45,000</span>
+<span class="font-data-mono text-[10px] text-outline">Net 15 · Limit: ₹30L</span>
+</div>
+</td>
+<td class="px-space-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface font-semibold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                Active
+              </span>
+</td>
+<td class="px-space-md text-right pr-4">
+<div class="flex items-center justify-end gap-1 opacity-90 group-hover:opacity-100">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Quick Note">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="New Sales Challan">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Profile Inspector">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="h-11 bg-surface-container-low/40 hover:bg-surface-container-low transition-colors group">
+<td class="px-3 text-center">
+<input class="rounded bg-surface-container-lowest cursor-pointer accent-primary" type="checkbox"/>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-6 h-6 rounded bg-surface-container text-on-surface font-data-mono text-[10px] font-semibold flex items-center justify-center shrink-0">
+                  MB
+                </div>
+<div class="flex flex-col min-w-0">
+<a class="font-label-lg text-label-lg font-semibold text-on-surface hover:text-secondary truncate" href="#">Meenakshi Balan</a>
+<span class="font-data-mono text-[11px] text-outline truncate">+91 94440 88712 · mbalan@southernpipe.in</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Southern Piping &amp; Sanitary</span>
+<span class="font-data-mono text-[10px] text-outline">ACC-55219 / Chennai Port</span>
+</div>
+</td>
+<td class="px-space-md">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm uppercase font-semibold">
+                Institutional
+              </span>
+</td>
+<td class="px-space-md">
+<span class="font-data-mono text-data-mono text-on-surface">33FFFF9012F6Z3</span>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Oct 30, 2024</span>
+<span class="font-data-mono text-[10px] text-on-surface-variant">Tender Submission</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-data-mono text-data-mono text-on-surface font-medium">₹ 52,10,800</span>
+<span class="font-data-mono text-[10px] text-outline">LC 60 · Limit: ₹75L</span>
+</div>
+</td>
+<td class="px-space-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface font-semibold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                Active
+              </span>
+</td>
+<td class="px-space-md text-right pr-4">
+<div class="flex items-center justify-end gap-1 opacity-90 group-hover:opacity-100">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Quick Note">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="New Sales Challan">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Profile Inspector">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 7 -->
+<tr class="h-11 hover:bg-surface-container-low transition-colors group">
+<td class="px-3 text-center">
+<input class="rounded bg-surface-container-lowest cursor-pointer accent-primary" type="checkbox"/>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-6 h-6 rounded bg-surface-container text-on-surface font-data-mono text-[10px] font-semibold flex items-center justify-center shrink-0">
+                  GS
+                </div>
+<div class="flex flex-col min-w-0">
+<a class="font-label-lg text-label-lg font-semibold text-on-surface hover:text-secondary truncate" href="#">Gurcharan Singh</a>
+<span class="font-data-mono text-[11px] text-outline truncate">+91 98140 33490 · gs@nationalpaint.co.in</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">National Paints Depot</span>
+<span class="font-data-mono text-[10px] text-outline">ACC-90114 / Ludhiana Indl</span>
+</div>
+</td>
+<td class="px-space-md">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-surface-container-low text-on-surface font-label-sm text-label-sm uppercase font-semibold">
+                Retail Chain
+              </span>
+</td>
+<td class="px-space-md">
+<span class="font-data-mono text-data-mono text-on-surface">03GGGGG3456G7Z4</span>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Nov 05, 2024</span>
+<span class="font-data-mono text-[10px] text-on-surface-variant">Winter Stocking</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-data-mono text-data-mono text-on-surface font-medium">₹ 8,90,400</span>
+<span class="font-data-mono text-[10px] text-outline">Net 30 · Limit: ₹15L</span>
+</div>
+</td>
+<td class="px-space-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface font-semibold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                Active
+              </span>
+</td>
+<td class="px-space-md text-right pr-4">
+<div class="flex items-center justify-end gap-1 opacity-90 group-hover:opacity-100">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Quick Note">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="New Sales Challan">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Profile Inspector">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 8 -->
+<tr class="h-11 bg-surface-container-low/40 hover:bg-surface-container-low transition-colors group">
+<td class="px-3 text-center">
+<input class="rounded bg-surface-container-lowest cursor-pointer accent-primary" type="checkbox"/>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-6 h-6 rounded bg-surface-container text-on-surface font-data-mono text-[10px] font-semibold flex items-center justify-center shrink-0">
+                  AR
+                </div>
+<div class="flex flex-col min-w-0">
+<a class="font-label-lg text-label-lg font-semibold text-on-surface hover:text-secondary truncate" href="#">Ananya Roy</a>
+<span class="font-data-mono text-[11px] text-outline truncate">+91 97480 55112 · ananya@eastbuildcon.in</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">East Coast Infrastructure Ltd</span>
+<span class="font-data-mono text-[10px] text-outline">ACC-72019 / Bhubaneswar Sector</span>
+</div>
+</td>
+<td class="px-space-md">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm uppercase font-semibold">
+                Institutional
+              </span>
+</td>
+<td class="px-space-md">
+<span class="font-data-mono text-data-mono text-on-surface">21HHHHH7890H8Z5</span>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Tomorrow</span>
+<span class="font-data-mono text-[10px] text-on-surface-variant">Commercial Signoff</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-data-mono text-data-mono text-on-surface font-medium">₹ 3,40,000</span>
+<span class="font-data-mono text-[10px] text-outline">Advance 100% · Proforma</span>
+</div>
+</td>
+<td class="px-space-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high text-secondary font-label-sm text-label-sm font-semibold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                Lead
+              </span>
+</td>
+<td class="px-space-md text-right pr-4">
+<div class="flex items-center justify-end gap-1 opacity-90 group-hover:opacity-100">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Quick Note">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="New Sales Challan">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Profile Inspector">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Compact Footer & Pagination -->
+<div class="px-space-md py-space-sm bg-surface-container-low/60 flex flex-col sm:flex-row items-center justify-between gap-space-sm select-none">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Rows per page:</span>
+<select class="h-7 px-1.5 rounded bg-surface-container-lowest text-on-surface font-data-mono text-data-mono focus:outline-none cursor-pointer">
+<option>15</option>
+<option>30</option>
+<option>50</option>
+<option>100</option>
+</select>
+</div>
+<span class="text-outline font-data-mono text-data-mono">|</span>
+<span class="font-data-mono text-data-mono text-on-surface-variant">Total Selected: <strong class="text-on-surface">0 accounts</strong></span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-data-mono text-data-mono text-on-surface-variant mr-space-xs">Page 1 of 84</span>
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-outline flex items-center justify-center opacity-50 cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-[16px]">first_page</span>
+</button>
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-outline flex items-center justify-center opacity-50 cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+<span class="w-7 h-7 rounded bg-primary text-on-primary font-data-mono text-data-mono font-semibold flex items-center justify-center">1</span>
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container font-data-mono text-data-mono flex items-center justify-center transition-colors">2</button>
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container font-data-mono text-data-mono flex items-center justify-center transition-colors">3</button>
+<span class="w-7 h-7 flex items-center justify-center text-outline font-data-mono text-[10px]">...</span>
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container font-data-mono text-data-mono flex items-center justify-center transition-colors">84</button>
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[16px]">last_page</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Micro-interactions for table row selection and quick feedback
+  document.addEventListener('DOMContentLoaded', () => {
+    const masterCheckbox = document.querySelector('thead input[type="checkbox"]');
+    const rowCheckboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+    const selectedCountDisplay = document.querySelector('.bg-surface-container-low\\/60 strong');
+
+    function updateSelectedCount() {
+      const checkedBoxes = document.querySelectorAll('tbody input[type="checkbox"]:checked');
+      if (selectedCountDisplay) {
+        selectedCountDisplay.textContent = `${checkedBoxes.length} accounts`;
+      }
+    }
+
+    if (masterCheckbox) {
+      masterCheckbox.addEventListener('change', (e) => {
+        rowCheckboxes.forEach(cb => {
+          cb.checked = e.target.checked;
+        });
+        updateSelectedCount();
+      });
+    }
+
+    rowCheckboxes.forEach(cb => {
+      cb.addEventListener('change', () => {
+        if (!cb.checked && masterCheckbox) {
+          masterCheckbox.checked = false;
+        }
+        updateSelectedCount();
+      });
+    });
+  });
+</script></main></div></body></html>
