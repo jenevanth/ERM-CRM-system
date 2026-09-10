@@ -20,13 +20,30 @@ class AuthUser:
         self.full_name = full_name
 
 
+import urllib.request
+import json
+from functools import lru_cache
+from jose import jwk
+
+_JWKS_CACHE = None
+
+def get_jwks(supabase_url: str, anon_key: str):
+    global _JWKS_CACHE
+    if _JWKS_CACHE is None:
+        jwks_url = f"{supabase_url.rstrip('/')}/auth/v1/.well-known/jwks.json"
+        req = urllib.request.Request(jwks_url, headers={"apikey": anon_key})
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            _JWKS_CACHE = json.loads(resp.read().decode())
+    return _JWKS_CACHE
+
+
 async def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security),
     db: asyncpg.Connection = Depends(get_db),
 ) -> AuthUser:
     """
     FastAPI dependency.
-    1. Decodes the Supabase JWT from the Authorization header.
+    1. Decodes the Supabase JWT from the Authorization header (supports both ES256 and HS256).
     2. Extracts the user ID (sub claim).
     3. Fetches the profile row (including role) from the DB.
     Returns an AuthUser or raises 401.
@@ -35,16 +52,36 @@ async def get_current_user(
     token = credentials.credentials
 
     try:
-        payload = jwt.decode(
-            token,
-            settings.supabase_jwt_secret,
-            algorithms=["HS256"],
-            options={"verify_aud": False},  # Supabase uses 'authenticated' as aud
-        )
+        header = jwt.get_unverified_header(token)
+        alg = header.get("alg", "HS256")
+
+        if alg == "ES256":
+            jwks = get_jwks(settings.supabase_url, settings.supabase_anon_key)
+            kid = header.get("kid")
+            target_key = next((k for k in jwks.get("keys", []) if k.get("kid") == kid), None)
+            if not target_key and jwks.get("keys"):
+                target_key = jwks["keys"][0]
+            if not target_key:
+                raise UnauthorizedError("No suitable JWK found for ES256 verification")
+            key = jwk.construct(target_key)
+            payload = jwt.decode(
+                token,
+                key,
+                algorithms=["ES256"],
+                options={"verify_aud": False},
+            )
+        else:
+            payload = jwt.decode(
+                token,
+                settings.supabase_jwt_secret,
+                algorithms=["HS256"],
+                options={"verify_aud": False},
+            )
+
         user_id: str = payload.get("sub")
         if not user_id:
             raise UnauthorizedError("Invalid token: missing subject")
-    except JWTError as e:
+    except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail=f"Invalid or expired token: {str(e)}",

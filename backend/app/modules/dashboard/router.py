@@ -21,6 +21,7 @@ class DashboardStats(BaseModel):
 
 
 @router.get("", response_model=DashboardStats)
+@router.get("/stats", response_model=DashboardStats)
 async def get_dashboard(
     current_user: AuthUser = Depends(get_current_user),
     db: asyncpg.Connection = Depends(get_db),

@@ -112,7 +112,7 @@ async def add_followup(
 ) -> dict:
     row = await db.fetchrow(
         """
-        INSERT INTO customer_followups (customer_id, note, follow_up_date, created_by)
+        INSERT INTO followups (customer_id, note, follow_up_date, created_by)
         VALUES ($1, $2, $3, $4)
         RETURNING id, customer_id, note, follow_up_date, created_by, created_at
         """,
@@ -125,7 +125,7 @@ async def list_followups(db: asyncpg.Connection, customer_id: str) -> list[dict]
     rows = await db.fetch(
         """
         SELECT id, customer_id, note, follow_up_date, created_by, created_at
-        FROM customer_followups
+        FROM followups
         WHERE customer_id = $1
         ORDER BY created_at DESC
         """,

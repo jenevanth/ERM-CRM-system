@@ -1,5 +1,5 @@
 from pydantic import BaseModel, EmailStr
-from typing import Literal, Optional
+from typing import Literal, Optional, Union
 from datetime import date, datetime
 
 CustomerType = Literal["RETAIL", "WHOLESALE", "DISTRIBUTOR"]
@@ -15,7 +15,7 @@ class CustomerCreate(BaseModel):
     customer_type: CustomerType
     address: Optional[str] = None
     status: CustomerStatus = "LEAD"
-    follow_up_date: Optional[date] = None
+    follow_up_date: Optional[Union[datetime, date]] = None
     notes: Optional[str] = None
 
 
@@ -28,7 +28,7 @@ class CustomerUpdate(BaseModel):
     customer_type: Optional[CustomerType] = None
     address: Optional[str] = None
     status: Optional[CustomerStatus] = None
-    follow_up_date: Optional[date] = None
+    follow_up_date: Optional[Union[datetime, date]] = None
     notes: Optional[str] = None
 
 
@@ -42,7 +42,7 @@ class CustomerResponse(BaseModel):
     customer_type: str
     address: Optional[str]
     status: str
-    follow_up_date: Optional[date]
+    follow_up_date: Optional[Union[datetime, date]]
     notes: Optional[str]
     created_at: datetime
     updated_at: datetime
@@ -50,14 +50,14 @@ class CustomerResponse(BaseModel):
 
 class FollowupCreate(BaseModel):
     note: str
-    follow_up_date: Optional[date] = None
+    follow_up_date: Optional[Union[datetime, date]] = None
 
 
 class FollowupResponse(BaseModel):
     id: str
     customer_id: str
     note: str
-    follow_up_date: Optional[date]
+    follow_up_date: Optional[Union[datetime, date]]
     created_by: Optional[str]
     created_at: datetime
 
