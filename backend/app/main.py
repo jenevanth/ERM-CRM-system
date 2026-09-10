@@ -48,13 +48,15 @@ app.add_exception_handler(AppError, app_error_handler)
 app.add_exception_handler(Exception, generic_error_handler)
 
 # Register all routers under /api prefix
+# Note: each router already has its own prefix set (e.g. prefix="/customers")
+# so we only add /api here — resulting in e.g. /api/customers
 API_PREFIX = "/api"
-app.include_router(auth_router, prefix=API_PREFIX)
-app.include_router(customers_router, prefix=API_PREFIX)
-app.include_router(products_router, prefix=API_PREFIX)
-app.include_router(inventory_router, prefix=API_PREFIX)
-app.include_router(challans_router, prefix=API_PREFIX)
-app.include_router(dashboard_router, prefix=API_PREFIX)
+app.include_router(auth_router, prefix=API_PREFIX)       # → /api/auth/...
+app.include_router(customers_router, prefix=API_PREFIX)  # → /api/customers/...
+app.include_router(products_router, prefix=API_PREFIX)   # → /api/products/...
+app.include_router(inventory_router, prefix=API_PREFIX)  # → /api/inventory/...
+app.include_router(challans_router, prefix=API_PREFIX)   # → /api/challans/...
+app.include_router(dashboard_router, prefix=API_PREFIX)  # → /api/dashboard/...
 
 
 @app.get("/health", tags=["Health"])
